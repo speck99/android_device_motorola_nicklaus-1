@@ -1,4 +1,3 @@
-
 #include <stdint.h>
 #include <fcntl.h>
 #include <sys/socket.h>
@@ -28,144 +27,9 @@
 
 /* BSSID blacklist */
 typedef struct {
-    int num_bssid;                           // number of blacklisted BSSIDs
+   int num_bssid;                           // number of blacklisted BSSIDs
     mac_addr bssids[MAX_BLACKLIST_BSSID];    // blacklisted BSSIDs
-} wifi_bssid_params;
-
-typedef enum {
-    GSCAN_SUBCMD_GET_CAPABILITIES = ANDROID_NL80211_SUBCMD_GSCAN_RANGE_START,
-
-    GSCAN_SUBCMD_SET_CONFIG,                          /* 0x1001 */
-    GSCAN_SUBCMD_SET_SCAN_CONFIG,                     /* 0x1002 */
-    GSCAN_SUBCMD_ENABLE_GSCAN,                        /* 0x1003 */
-    GSCAN_SUBCMD_GET_SCAN_RESULTS,                    /* 0x1004 */
-    GSCAN_SUBCMD_SCAN_RESULTS,                        /* 0x1005 */
-
-    GSCAN_SUBCMD_SET_HOTLIST,                         /* 0x1006 */
-
-    GSCAN_SUBCMD_SET_SIGNIFICANT_CHANGE_CONFIG,       /* 0x1007 */
-    GSCAN_SUBCMD_ENABLE_FULL_SCAN_RESULTS,            /* 0x1008 */
-
-    GSCAN_SUBCMD_SET_EPNO_SSID = 0x100F,              /* 0x100F */
-
-    GSCAN_SUBCMD_SET_SSID_WHITE_LIST,                 /* 0x1010 */
-    GSCAN_SUBCMD_SET_ROAM_PARAMS,                     /* 0x1011 */
-    GSCAN_SUBCMD_ENABLE_LAZY_ROAM,                    /* 0x1012 */
-    GSCAN_SUBCMD_SET_BSSID_PREF,                      /* 0x1013 */
-    GSCAN_SUBCMD_SET_BSSID_BLACKLIST,                 /* 0x1014 */
-
-    GSCAN_SUBCMD_ANQPO_CONFIG,                        /* 0x1015 */
-    /* Add more sub commands here */
-
-} GSCAN_SUB_COMMAND;
-
-typedef enum {
-    GSCAN_ATTRIBUTE_CAPABILITIES = 1,
-
-    GSCAN_ATTRIBUTE_NUM_BUCKETS = 10,
-    GSCAN_ATTRIBUTE_BASE_PERIOD,
-    GSCAN_ATTRIBUTE_BUCKETS_BAND,
-    GSCAN_ATTRIBUTE_BUCKET_ID,
-    GSCAN_ATTRIBUTE_BUCKET_PERIOD,
-    GSCAN_ATTRIBUTE_BUCKET_NUM_CHANNELS,
-    GSCAN_ATTRIBUTE_BUCKET_CHANNELS,
-    GSCAN_ATTRIBUTE_NUM_AP_PER_SCAN,
-    GSCAN_ATTRIBUTE_REPORT_THRESHOLD,
-    GSCAN_ATTRIBUTE_NUM_SCANS_TO_CACHE,
-
-    GSCAN_ATTRIBUTE_ENABLE_FEATURE = 20,
-    GSCAN_ATTRIBUTE_SCAN_RESULTS_COMPLETE,            /* indicates no more results */
-    GSCAN_ATTRIBUTE_FLUSH_FEATURE,                    /* Flush all the configs */
-    GSCAN_ENABLE_FULL_SCAN_RESULTS,
-    GSCAN_ATTRIBUTE_REPORT_EVENTS,
-    /* Adaptive scan attributes */
-    GSCAN_ATTRIBUTE_BUCKET_STEP_COUNT,
-    GSCAN_ATTRIBUTE_BUCKET_MAX_PERIOD,
-
-    GSCAN_ATTRIBUTE_NUM_OF_RESULTS = 30,
-    GSCAN_ATTRIBUTE_FLUSH_RESULTS,
-    GSCAN_ATTRIBUTE_SCAN_RESULTS,                     /* flat array of wifi_scan_result */
-    GSCAN_ATTRIBUTE_SCAN_ID,                          /* indicates scan number */
-    GSCAN_ATTRIBUTE_SCAN_FLAGS,                       /* indicates if scan was aborted */
-    GSCAN_ATTRIBUTE_AP_FLAGS,                         /* flags on significant change event */
-    GSCAN_ATTRIBUTE_CH_BUCKET_BITMASK,
-
-    GSCAN_ATTRIBUTE_SSID = 40,
-    GSCAN_ATTRIBUTE_BSSID,
-    GSCAN_ATTRIBUTE_CHANNEL,
-    GSCAN_ATTRIBUTE_RSSI,
-    GSCAN_ATTRIBUTE_TIMESTAMP,
-    GSCAN_ATTRIBUTE_RTT,
-    GSCAN_ATTRIBUTE_RTTSD,
-
-    GSCAN_ATTRIBUTE_HOTLIST_BSSIDS = 50,
-    GSCAN_ATTRIBUTE_RSSI_LOW,
-    GSCAN_ATTRIBUTE_RSSI_HIGH,
-    GSCAN_ATTRIBUTE_HOTLIST_ELEM,
-    GSCAN_ATTRIBUTE_HOTLIST_FLUSH,
-
-    GSCAN_ATTRIBUTE_RSSI_SAMPLE_SIZE = 60,
-    GSCAN_ATTRIBUTE_LOST_AP_SAMPLE_SIZE,
-    GSCAN_ATTRIBUTE_MIN_BREACHING,
-    GSCAN_ATTRIBUTE_NUM_AP,                     /* TBD */
-    GSCAN_ATTRIBUTE_SIGNIFICANT_CHANGE_BSSIDS,
-    GSCAN_ATTRIBUTE_SIGNIFICANT_CHANGE_FLUSH,
-
-    /* EPNO */
-    GSCAN_ATTRIBUTE_EPNO_SSID_LIST = 70,
-    GSCAN_ATTRIBUTE_EPNO_SSID,
-    GSCAN_ATTRIBUTE_EPNO_SSID_LEN,
-    GSCAN_ATTRIBUTE_EPNO_RSSI,
-    GSCAN_ATTRIBUTE_EPNO_FLAGS,
-    GSCAN_ATTRIBUTE_EPNO_AUTH,
-    GSCAN_ATTRIBUTE_EPNO_SSID_NUM,
-    GSCAN_ATTRIBUTE_EPNO_FLUSH,
-
-    GSCAN_ATTRIBUTE_WHITELIST_SSID = 80,
-    GSCAN_ATTRIBUTE_NUM_WL_SSID,
-    GSCAN_ATTRIBUTE_WL_SSID_LEN,
-    GSCAN_ATTRIBUTE_WL_SSID_FLUSH,
-    GSCAN_ATTRIBUTE_WHITELIST_SSID_ELEM,
-    GSCAN_ATTRIBUTE_NUM_BSSID,
-    GSCAN_ATTRIBUTE_BSSID_PREF_LIST,
-    GSCAN_ATTRIBUTE_BSSID_PREF_FLUSH,
-    GSCAN_ATTRIBUTE_BSSID_PREF,
-    GSCAN_ATTRIBUTE_RSSI_MODIFIER,
-
-    GSCAN_ATTRIBUTE_A_BAND_BOOST_THRESHOLD = 90,
-    GSCAN_ATTRIBUTE_A_BAND_PENALTY_THRESHOLD,
-    GSCAN_ATTRIBUTE_A_BAND_BOOST_FACTOR,
-    GSCAN_ATTRIBUTE_A_BAND_PENALTY_FACTOR,
-    GSCAN_ATTRIBUTE_A_BAND_MAX_BOOST,
-    GSCAN_ATTRIBUTE_LAZY_ROAM_HYSTERESIS,
-    GSCAN_ATTRIBUTE_ALERT_ROAM_RSSI_TRIGGER,
-    GSCAN_ATTRIBUTE_LAZY_ROAM_ENABLE,
-
-    /* BSSID blacklist */
-    GSCAN_ATTRIBUTE_BSSID_BLACKLIST_FLUSH = 100,
-    GSCAN_ATTRIBUTE_BLACKLIST_BSSID,
-
-    /* ANQPO */
-    GSCAN_ATTRIBUTE_ANQPO_HS_LIST = 110,
-    GSCAN_ATTRIBUTE_ANQPO_HS_LIST_SIZE,
-    GSCAN_ATTRIBUTE_ANQPO_HS_NETWORK_ID,
-    GSCAN_ATTRIBUTE_ANQPO_HS_NAI_REALM,
-    GSCAN_ATTRIBUTE_ANQPO_HS_ROAM_CONSORTIUM_ID,
-    GSCAN_ATTRIBUTE_ANQPO_HS_PLMN,
-
-    /* ePNO cfg */
-    GSCAN_ATTRIBUTE_EPNO_5G_RSSI_THR = 130,
-    GSCAN_ATTRIBUTE_EPNO_2G_RSSI_THR,
-    GSCAN_ATTRIBUTE_EPNO_INIT_SCORE_MAX,
-    GSCAN_ATTRIBUTE_EPNO_CUR_CONN_BONUS,
-    GSCAN_ATTRIBUTE_EPNO_SAME_NETWORK_BONUS,
-    GSCAN_ATTRIBUTE_EPNO_SECURE_BONUS,
-    GSCAN_ATTRIBUTE_EPNO_5G_BONUS,
-
-    GSCAN_ATTRIBUTE_MAX
-
-} GSCAN_ATTRIBUTE;
-
+} wifi_bssid_params
 
 // helper methods
 wifi_error wifi_enable_full_scan_results(wifi_request_id id, wifi_interface_handle iface,
@@ -407,34 +271,26 @@ public:
         return wifi_handle_full_scan_event(id(), event, mHandler);
 #else
         ALOGD("[WIFI HAL]Full scan results:  Got an event");
-
         // event.log();
-
         struct nlattr *vendor_data = (struct nlattr *)event.get_vendor_data();
         unsigned int len = event.get_vendor_data_len();
-
         if (vendor_data == NULL || len < sizeof(wifi_scan_result)) {
             ALOGE("No scan results found");
             return NL_SKIP;
         }
-
         ALOGD("vendor_data->nla_type=%d nla_len=%d, len=%d",
             vendor_data->nla_type, vendor_data->nla_len, len);
-
         wifi_scan_result *result = NULL;
         if (vendor_data->nla_type == GSCAN_EVENT_FULL_SCAN_RESULTS)
             result = (wifi_scan_result *)nla_data(vendor_data);
-
         if (*mHandler.on_full_scan_result)
             (*mHandler.on_full_scan_result)(id(), result);
-
         if (result) {
         ALOGI("Full scan result: %-32s %02x:%02x:%02x:%02x:%02x:%02x %d %d %lld %lld %lld\n",
             result->ssid, result->bssid[0], result->bssid[1], result->bssid[2], result->bssid[3],
             result->bssid[4], result->bssid[5], result->rssi, result->channel, result->ts,
             result->rtt, result->rtt_sd);
         }
-
         return NL_SKIP;
 #endif
     }
@@ -1639,6 +1495,7 @@ wifi_error wifi_set_epno_list(wifi_request_id id, wifi_interface_handle iface,
      }
      return result;
 }
+
 #if 0
 class BssidBlacklistCommand : public WifiCommand
 {
@@ -1704,10 +1561,11 @@ public:
     }
 };
 #endif
+
 wifi_error wifi_set_bssid_blacklist(wifi_request_id id, wifi_interface_handle iface,
         wifi_bssid_params params)
 {
-    return WIFI_ERROR_NOT_SUPPORTED;
+        return WIFI_ERROR_NOT_SUPPORTED;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1881,4 +1739,3 @@ wifi_error wifi_reset_passpoint_list(wifi_request_id id, wifi_interface_handle i
 {
     return wifi_cancel_cmd(id, iface);
 }
-
