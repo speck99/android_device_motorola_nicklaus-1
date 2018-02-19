@@ -1,7 +1,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from nicklaus
-$(call inherit-product,  $(LOCAL_PATH)/device.mk)
+$(call inherit-product,  device/motorola/nicklaus/device.mk)
 
 PRODUCT_DEVICE := nicklaus
 PRODUCT_NAME := full_nicklaus

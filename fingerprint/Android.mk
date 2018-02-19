@@ -1,5 +1,3 @@
-LOCAL_PATH := $(call my-dir)
-
 include $(CLEAR_VARS)
 LOCAL_MODULE := android.hardware.biometrics.fingerprint.microarray@2.1-service
 LOCAL_INIT_RC := android.hardware.biometrics.fingerprint.microarray@2.1-service.rc

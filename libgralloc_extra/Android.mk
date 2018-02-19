@@ -1,4 +1,4 @@
-LOCAL_PATH := $(call my-dir)
+LOCAL_PATH := device/motorola/nicklaus
 
 include $(CLEAR_VARS)
 

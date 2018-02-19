@@ -1,6 +1,8 @@
 # inherit from the proprietary version
 -include vendor/motorola/nicklaus/BoardConfigVendor.mk
 
+LOCAL_PATH := device/motorola/nicklaus
+
 # Architecture
 FORCE_32_BIT := true
 
@@ -120,7 +122,7 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Lineage Hardware
-BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/lineagehw
+BOARD_HARDWARE_CLASS += device/motorola/nicklaus/lineagehw
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -162,7 +164,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := device/moto/e4/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff

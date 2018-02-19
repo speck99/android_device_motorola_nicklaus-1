@@ -1,10 +1,9 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-LOCAL_PATH := $(LOCAL_PATH)
 
 $(call inherit-product-if-exists, vendor/motorola/nicklaus/nicklaus-vendor.mk)
+
+LOCAL_PATH := device/motorola/nicklaus
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay # enable this to be able overlay a default wallpaper
