@@ -18,3 +18,4 @@ Camera  | Main 13MP / Front 5MP, autofocus, LED flash
 
 ![Moto E4 Plus]( https://www.motorola.com/sites/default/files/library/storage/products/smartphones/moto-e4-plus-NA-1000.png "Moto E4 Plus")
 
+

@@ -119,7 +119,7 @@ USE_CAMERA_STUB := true
 
 # Boot animation
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+#TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += device/motorola/nicklaus/lineagehw
@@ -129,7 +129,7 @@ BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
-BOARD_CONNECTIVITY_MODULE := MT6625
+BOARD_CONNECTIVITY_MODULE := MT6630
 BOARD_MEDIATEK_USES_GPS := true
 
 # Wireless
@@ -158,7 +158,6 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
@@ -189,9 +188,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 
 # SEPolicy
 BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
-
-# Seccomp filter
-BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
 
 #HIDL
 DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/hidl/manifest.xml
