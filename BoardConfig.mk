@@ -1,9 +1,5 @@
 # inherit from the proprietary version
--include vendor/moto/e4/BoardConfigVendor.mk
-
-
-# Disable NINJA
-#USE_NINJA := false
+-include vendor/motorola/nicklaus/BoardConfigVendor.mk
 
 # Architecture
 FORCE_32_BIT := true
@@ -46,7 +42,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-TARGET_KERNEL_SOURCE := kernel/moto/e4
+TARGET_KERNEL_SOURCE := kernel/motorola/nicklaus
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
@@ -54,7 +50,7 @@ BOARD_TAGS_OFFSET := 0xE000000
 ifeq ($(FORCE_32_BIT),true)
 ARCH := arm
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := woods_defconfig
+TARGET_KERNEL_CONFIG := lineageos_nicklaus_defconfig
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,32N2 androidboot.selinux=permissive androidboot.selinux=disabled 
 BOARD_KERNEL_OFFSET := 0x00008000
 else
@@ -66,8 +62,8 @@ endif
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
 
 # make_ext4fs requires numbers in dec format
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216 
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216 
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2432696320
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4698144768
 BOARD_CACHEIMAGE_PARTITION_SIZE := 419430400
@@ -75,7 +71,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_KMODULES := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Moto_E4,Moto E4,e4,e4
+TARGET_OTA_ASSERT_DEVICE := nicklaus,nicklaus_retail
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -83,33 +79,27 @@ TARGET_CPU_MEMCPY_OPT_DISABLE := true
 # Flags
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-#BOARD_GLOBAL_CFLAGS += -DMTK_HARDWARE
-#BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
-
 
 # Display
-BOARD_EGL_CFG := /vendor/moto/e4/vendor/lib/egl/egl.cfg
-USE_OPENGL_RENDERER:=true
+BOARD_EGL_CFG := /vendor/motorola/nicklaus/proprietary/vendor/lib/egl/egl.cfg
+USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
-#MAX_VIRTUAL_DISPLAY_DIMENSION := 1
 MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.4.1
 MTK_GPU_VERSION := mali midgard r12p1
 OVERRIDE_RS_DRIVER := libRSDriver_mtk.so
 
 # Mediatek support
-BOARD_USES_MTK_HARDWARE:=true
-#DISABLE_ASHMEM_TRACKING := true
+BOARD_USES_MTK_HARDWARE := true
 
 # Camera
 USE_CAMERA_STUB := true
 
 # Boot animation
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-#TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Audio
 BOARD_USES_MTK_AUDIO := true
@@ -128,7 +118,7 @@ TARGET_OMX_LEGACY_RESCALING := true
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/moto/e4/ril/
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril/
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
@@ -152,7 +142,6 @@ WIFI_DRIVER_STATE_OFF := 0
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
-#MALLOC_IMPL := dlmalloc
 
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE := true
@@ -162,15 +151,12 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-#BOARD_HAVE_BLUETOOTH_MTK := true
-#BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-#BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/e4/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := device/moto/e4/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
@@ -189,8 +175,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := device/moto/e4/system.prop
-TARGET_SPECIFIC_HEADER_PATH := device/moto/e4/include
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 ifneq ($(FORCE_32_BIT),yes)
@@ -200,8 +186,8 @@ PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 endif
 
-BOARD_SEPOLICY_DIRS := \
-       device/moto/e4/sepolicy
+# SEPolicy
+BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
 
 # Seccomp filter
-BOARD_SECCOMP_POLICY += device/moto/e4/seccomp
+BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
