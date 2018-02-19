@@ -2,12 +2,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-LOCAL_PATH := device/moto/e4
+LOCAL_PATH := $(LOCAL_PATH)
 
-$(call inherit-product-if-exists, vendor/moto/e4/e4-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/nicklaus/nicklaus-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/moto/e4/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/moto/e4/overlay # enable this to be able overlay a default wallpaper
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+PRODUCT_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay # enable this to be able overlay a default wallpaper
 
 # Dalvik/HWUI
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
@@ -54,23 +54,22 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-# Media	
+# Media
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/vendor/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/vendor/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/vendor/etc/media_codecs_google_video_le.xml
 
-# Media	
+# Media
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
-    
+
 # HIDL
 PRODUCT_COPY_FILES += \
-    device/moto/e4/hidl/manifest.xml:system/vendor/manifest.xml
-    
+    $(LOCAL_PATH)/hidl/manifest.xml:system/vendor/manifest.xml
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -116,20 +115,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libnl_2 \
     libion
-    
+
 # Charger Mode
 PRODUCT_PACKAGES += \
     charger_res_images
-    
+
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
-    
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service
-    
+
 # Camera HAL
 PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
@@ -151,7 +150,7 @@ PRODUCT_PACKAGES += \
 # CM14 mtk symbols
 PRODUCT_PACKAGES += \
     mtk_symbols
-    
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint.microarray@2.1-service
@@ -162,16 +161,16 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.mt6737m
-    
+
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
-    
+
 # Keymaster HAL
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
-    
+
 # Sensors HAL
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
@@ -179,28 +178,28 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
     lights.mt6737m
-    
+
 # GPS HAL
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl
-    
+
 # GPS force mode
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.force.gps.mode=gnss
-    
+
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
-    
+
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl \
     android.hardware.health@1.0-service
-    
+
 # Power HAL
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl
-    
+
 # Graphic HAL
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \

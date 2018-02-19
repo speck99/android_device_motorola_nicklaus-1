@@ -1,7 +1,7 @@
-#                                       Device Tree for Motorola E4 (8.0 , 3.18.35+)
+Device Configuration for Moto E4 Plus
+===========================================
 
-The Moto E4 (codenamed _"e4"_) is a mid-range smartphone from Motorola.
-![Moto E4](http://www.digitik.ru/upload/iblock/dd7/dd77003d77e62a8d7b9eb0d840bd3e77.jpg "Moto E4")
+The Moto E4 Plus (codenamed _"nicklaus"_) is a mid-range smartphone from Motorola.
 
 Basic   | Spec Sheet
 -------:|:-------------------------
@@ -10,25 +10,11 @@ Chipset | MediaTek MT6737
 GPU     | Mali-T720
 Memory  | 2GB RAM
 Shipped Android Version | 7.1
-Storage | 16GB
-MicroSD | Up to 64GB
-Battery | Li-Pol 2800mAh battery
-Display | 720 x 1280 pixels, 5.0 inches
-Camera  | Main 8MP / Front 5MP, autofocus, LED flash
+Storage | 32GB
+MicroSD | Up to 128GB
+Battery | Li-Pol 5000mAh battery
+Display | 720 x 1280 pixels, 5.5 inches
+Camera  | Main 13MP / Front 5MP, autofocus, LED flash
 
-Copyright 2017 - The LineageOS Project.
-Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
+![Moto E4 Plus]( https://www.motorola.com/sites/default/files/library/storage/products/smartphones/moto-e4-plus-NA-1000.png "Moto E4 Plus")
 
-### Working:
-- [x] Wifi
-- [x] Sound
-- [x] LiveDisplay
-- [ ] Ril
-- [ ] Codecs
-- [ ] Camera, flashlight
-- [ ] Radio
-- [ ] Fingerprint
-- [ ] Bluetooth
-- [x] Sensors
-- [ ] Hotspot
-- ...

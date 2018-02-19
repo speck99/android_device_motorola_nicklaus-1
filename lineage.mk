@@ -1,24 +1,23 @@
 ## Specify phone tech before including full_phone
 
 # Release name
-PRODUCT_RELEASE_NAME := E4
+PRODUCT_RELEASE_NAME := nicklaus
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/moto/e4/device_e4.mk)
+$(call inherit-product,  $(LOCAL_PATH)/full_nicklaus.mk)
 
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 DEVICE_RESOLUTION := 720x1280
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := e4
-PRODUCT_NAME := lineage_e4
-PRODUCT_BRAND := Motorola
-PRODUCT_MODEL := Moto E4
-PRODUCT_MANUFACTURER := Motorola
+PRODUCT_DEVICE := nicklaus
+PRODUCT_NAME := lineage_nicklaus
+PRODUCT_BRAND := motorola
+PRODUCT_MODEL := Moto E4 Plus
+PRODUCT_MANUFACTURER := motorola
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 

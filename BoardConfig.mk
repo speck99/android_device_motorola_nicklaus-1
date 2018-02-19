@@ -1,9 +1,5 @@
 # inherit from the proprietary version
--include vendor/moto/e4/BoardConfigVendor.mk
-
-
-# Disable NINJA
-#USE_NINJA := false
+-include vendor/motorola/nicklaus/BoardConfigVendor.mk
 
 # Architecture
 FORCE_32_BIT := true
@@ -49,7 +45,7 @@ TARGET_KERNEL_HAVE_NTFS := true
 
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-TARGET_KERNEL_SOURCE := kernel/moto/e4
+TARGET_KERNEL_SOURCE := kernel/motorola/nicklaus
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
@@ -59,7 +55,7 @@ ARCH := arm
 TARGET_ARCH := arm
 KERNEL_ARCH := arm
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := woods_defconfig
+TARGET_KERNEL_CONFIG := lineageos_nicklaus_defconfig
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,32N2 androidboot.selinux=permissive androidboot.selinux=disabled 
 BOARD_KERNEL_OFFSET := 0x00008000
 else
@@ -71,8 +67,8 @@ endif
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
 
 # make_ext4fs requires numbers in dec format
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216 
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216 
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2432696320
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4698144768
 BOARD_CACHEIMAGE_PARTITION_SIZE := 419430400
@@ -80,7 +76,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_KMODULES := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Moto_E4,Moto E4,e4,e4
+TARGET_OTA_ASSERT_DEVICE := nicklaus,nicklaus_retail
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -94,18 +90,17 @@ WITH_LINEAGE_CHARGER := false
 
 BOARD_DISABLE_HW_ID_MATCH_CHECK := true
 SUPPRESS_MTK_AUDIO_BLOB_ERR_MSG := true
- 
+
 # SensorHAL
 TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Display
-BOARD_EGL_CFG := /vendor/moto/e4/vendor/lib/egl/egl.cfg
+BOARD_EGL_CFG := /vendor/motorola/nicklaus/vendor/lib/egl/egl.cfg
 USE_OPENGL_RENDERER:=true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
-#MAX_VIRTUAL_DISPLAY_DIMENSION := 1
 MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.4.1
 MTK_GPU_VERSION := mali midgard r12p1
@@ -116,7 +111,6 @@ BOARD_USE_SOFT_GATEKEEPER := true
 
 # Mediatek support
 BOARD_USES_MTK_HARDWARE:=true
-#DISABLE_ASHMEM_TRACKING := true
 
 # Camera
 USE_CAMERA_STUB := true
@@ -126,16 +120,10 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Lineage Hardware
-BOARD_HARDWARE_CLASS += device/moto/e4/lineagehw
-
-# Fix video autoscaling on old OMX decoders
-#TARGET_OMX_LEGACY_RESCALING := true
+BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/lineagehw
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
-
-# RIL
-BOARD_RIL_CLASS := ../../../device/moto/e4/ril/
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
@@ -159,7 +147,6 @@ WIFI_DRIVER_STATE_OFF := 0
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
-#MALLOC_IMPL := dlmalloc
 
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE := true
@@ -169,10 +156,8 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-#BOARD_HAVE_BLUETOOTH_MTK := true
-#BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/e4/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
 
@@ -196,15 +181,15 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := device/moto/e4/system.prop
-TARGET_SPECIFIC_HEADER_PATH := device/moto/e4/include
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
-BOARD_SEPOLICY_DIRS := \
-       device/moto/e4/sepolicy
+# SEPolicy
+BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
 
 # Seccomp filter
-BOARD_SECCOMP_POLICY += device/moto/e4/seccomp
+BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
 
 #HIDL
-DEVICE_MANIFEST_FILE := device/moto/e4/hidl/manifest.xml
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/hidl/manifest.xml
