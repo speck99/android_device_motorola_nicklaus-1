@@ -167,9 +167,7 @@
 	<item>230</item>
 	<item>255</item>
     </integer-array>
-    
-    <integer name="config_buttonBrightnessSettingDefault">0</integer>  
-    
+        
     <!-- Flag indicating if the user is notified when the mobile network access is restricted -->
     <bool name="config_user_notification_of_restrictied_mobile_access">false</bool>
 

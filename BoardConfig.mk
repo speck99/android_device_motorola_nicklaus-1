@@ -1,8 +1,6 @@
 # inherit from the proprietary version
 -include vendor/motorola/nicklaus/BoardConfigVendor.mk
 
-LOCAL_PATH := device/motorola/nicklaus
-
 # Architecture
 FORCE_32_BIT := true
 
@@ -38,7 +36,7 @@ TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
 TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
 endif
 
-# Recovery
+# Filesystems
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -98,7 +96,7 @@ TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Display
 BOARD_EGL_CFG := /vendor/motorola/nicklaus/vendor/lib/egl/egl.cfg
-USE_OPENGL_RENDERER:=true
+USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
@@ -112,23 +110,22 @@ OVERRIDE_RS_DRIVER := libRSDriver_mtk.so
 BOARD_USE_SOFT_GATEKEEPER := true
 
 # Mediatek support
-BOARD_USES_MTK_HARDWARE:=true
+BOARD_USES_MTK_HARDWARE := true
 
 # Camera
 USE_CAMERA_STUB := true
 
 # Boot animation
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-#TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
-# Lineage Hardware
+# Lineage Hardware hooks
 BOARD_HARDWARE_CLASS += device/motorola/nicklaus/lineagehw
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # GPS
-BOARD_GPS_LIBRARIES :=true
+BOARD_GPS_LIBRARIES := true
 BOARD_CONNECTIVITY_MODULE := MT6630
 BOARD_MEDIATEK_USES_GPS := true
 
@@ -158,12 +155,13 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/motorola/nicklaus/bluetooth
 
+# Symbols for Mediatek
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/motorola/nicklaus/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
@@ -182,12 +180,15 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+# Common Properties
+TARGET_SYSTEM_PROP := device/motorola/nicklaus/system.prop
+
+
+TARGET_SPECIFIC_HEADER_PATH := device/motorola/nicklaus/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 # SEPolicy
-BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS := device/motorola/nicklaus/sepolicy
 
-#HIDL
-DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/hidl/manifest.xml
+# Vendor Interface Manifest
+DEVICE_MANIFEST_FILE := device/motorola/nicklaus/hidl/manifest.xml

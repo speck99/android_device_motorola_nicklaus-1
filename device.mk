@@ -3,23 +3,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/nicklaus/nicklaus-vendor.mk)
 
-LOCAL_PATH := device/motorola/nicklaus
-
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-PRODUCT_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay # enable this to be able overlay a default wallpaper
+DEVICE_PACKAGE_OVERLAYS += device/motorola/nicklaus/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/motorola/nicklaus/overlay # enable this to be able overlay a default wallpaper
 
 # Dalvik/HWUI
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+# Dalvik Tweaks
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # set locales & aapt config.
 PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_DEFAULT_LANGUAGE := ru
-PRODUCT_DEFAULT_REGION   := RU
+PRODUCT_DEFAULT_LANGUAGE := en
+PRODUCT_DEFAULT_REGION   := US
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -69,24 +68,24 @@ PRODUCT_COPY_FILES += \
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
-    $(LOCAL_PATH)/seccomp/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
-    
-# HIDL
+    device/motorola/nicklaus/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
+    device/motorola/nicklaus/seccomp/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
+
+# Vendor Interface Manifest
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/hidl/manifest.xml:system/vendor/manifest.xml
+    device/motorola/nicklaus/hidl/manifest.xml:system/vendor/manifest.xml
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.project.rc:root/init.project.rc \
-    $(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.mt6735.rc:root/ueventd.mt6735.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6735.usb.rc:root/init.mt6735.usb.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6735.rc:root/init.mt6735.rc \
-    $(LOCAL_PATH)/rootdir/fstab.mt6735:root/fstab.mt6735 \
-    $(LOCAL_PATH)/rootdir/init.microtrust.rc:root/init.microtrust.rc \
-    $(LOCAL_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6735.power.rc:root/init.mt6735.power.rc
+    device/motorola/nicklaus/rootdir/init.project.rc:root/init.project.rc \
+    device/motorola/nicklaus/rootdir/init.modem.rc:root/init.modem.rc \
+    device/motorola/nicklaus/rootdir/ueventd.mt6735.rc:root/ueventd.mt6735.rc \
+    device/motorola/nicklaus/rootdir/init.mt6735.usb.rc:root/init.mt6735.usb.rc \
+    device/motorola/nicklaus/rootdir/init.mt6735.rc:root/init.mt6735.rc \
+    device/motorola/nicklaus/rootdir/fstab.mt6735:root/fstab.mt6735 \
+    device/motorola/nicklaus/rootdir/init.microtrust.rc:root/init.microtrust.rc \
+    device/motorola/nicklaus/rootdir/init.connectivity.rc:root/init.connectivity.rc \
+    device/motorola/nicklaus/rootdir/init.mt6735.power.rc:root/init.mt6735.power.rc
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -138,7 +137,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
-
 # FM Radio
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
@@ -149,7 +147,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
-# CM14 mtk symbols
+# Symbols for Mediatek
 PRODUCT_PACKAGES += \
     mtk_symbols
 
@@ -224,7 +222,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=0
-    
+
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hw.gyroscope=false \

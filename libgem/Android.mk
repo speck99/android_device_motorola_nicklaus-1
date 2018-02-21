@@ -33,8 +33,7 @@
 # applicable license agreements with MediaTek Inc.
 
 
-LOCAL_PATH:= device/motorola/nicklaus
-
+LOCAL_PATH:= $(call my-dir)
 
 #
 # libui_ext.so
@@ -50,7 +49,7 @@ LOCAL_SRC_FILES := \
 	lib/SWWatchDog.cpp
 
 LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/libgem/inc \
+	device/motorola/nicklaus/libgem/inc \
 	frameworks/native/libs/nativewindow/include \
 	frameworks/native/libs/nativebase/include \
 	frameworks/native/libs/arect/include \
@@ -98,7 +97,7 @@ LOCAL_SRC_FILES := \
 	lib/GuiExtImpl.cpp
 
 LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/libgem/inc
+	device/motorola/nicklaus/libgem/inc
 
 LOCAL_SHARED_LIBRARIES := \
 	libutils \

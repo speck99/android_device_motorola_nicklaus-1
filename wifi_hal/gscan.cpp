@@ -29,7 +29,7 @@
 typedef struct {
    int num_bssid;                           // number of blacklisted BSSIDs
     mac_addr bssids[MAX_BLACKLIST_BSSID];    // blacklisted BSSIDs
-} wifi_bssid_params
+} wifi_bssid_params;
 
 // helper methods
 wifi_error wifi_enable_full_scan_results(wifi_request_id id, wifi_interface_handle iface,

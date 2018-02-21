@@ -1,4 +1,4 @@
-LOCAL_PATH := device/motorola/nicklaus
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
@@ -7,8 +7,8 @@ LOCAL_SRC_FILES := \
 	GraphicBufferExtra_hal.cpp
 
 LOCAL_C_INCLUDES := \
-        $(LOCAL_PATH)/libgralloc_extra/include \
-	$(LOCAL_PATH)/libgralloc_extra/../include
+        device/motorola/nicklaus/libgralloc_extra/include \
+	device/motorola/nicklaus/libgralloc_extra/../include
 
 LOCAL_SHARED_LIBRARIES := \
     libhardware \
@@ -19,7 +19,7 @@ LOCAL_SHARED_LIBRARIES := \
     libged
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
-	$(LOCAL_PATH)/libgralloc_extra/include \
+	device/motorola/nicklaus/libgralloc_extra/include \
 
 LOCAL_C_INCLUDES += \
 	system/core/libion/include \
