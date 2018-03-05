@@ -1,6 +1,8 @@
 # inherit from the proprietary version
 -include vendor/motorola/nicklaus/BoardConfigVendor.mk
 
+DEVICE_PATH := device/motorola/nicklaus
+
 # Architecture
 FORCE_32_BIT := true
 
@@ -71,7 +73,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_KMODULES := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := nicklaus,nicklaus_retail
+TARGET_OTA_ASSERT_DEVICE := nicklaus
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -118,7 +120,7 @@ TARGET_OMX_LEGACY_RESCALING := true
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril/
+BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril/
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
@@ -151,12 +153,12 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
@@ -175,8 +177,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 ifneq ($(FORCE_32_BIT),yes)
@@ -187,7 +189,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 endif
 
 # SEPolicy
-BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy
 
 # Seccomp filter
-BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
+BOARD_SECCOMP_POLICY += $(DEVICE_PATH)/seccomp

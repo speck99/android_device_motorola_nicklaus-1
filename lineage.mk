@@ -6,7 +6,7 @@ PRODUCT_RELEASE_NAME := nicklaus
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-$(call inherit-product, $(LOCAL_PATH)/full_nicklaus.mk)
+$(call inherit-product, device/motorola/nicklaus/full_nicklaus.mk)
 
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
