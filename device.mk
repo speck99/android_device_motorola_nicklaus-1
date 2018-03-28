@@ -13,7 +13,7 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     libtinymix \
     libtinyxml
-	
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
@@ -25,8 +25,8 @@ PRODUCT_PACKAGES += \
     camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
-	
-# Charger	
+
+# Charger
 PRODUCT_PACKAGES += \
     libnl_2 \
     charger_res_images
@@ -41,21 +41,21 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # Display
 PRODUCT_PACKAGES += \
     libion
-	
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
-	
+
 # FM Radio
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
     FMRadio \
     libfmjni
-	
+
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl
-	
+
 # Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -66,13 +66,13 @@ PRODUCT_PACKAGES += \
     libgralloc_extra \
     libgui_ext \
     libui_ext
-	
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl \
     android.hardware.health@1.0-service
 
-# Lights	
+# Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service
@@ -82,7 +82,7 @@ PRODUCT_PACKAGES += \
     com.cyanogenmod.keyhandler
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 $(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
-	
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
@@ -101,7 +101,7 @@ DEVICE_PACKAGE_OVERLAYS += device/motorola/nicklaus/overlay
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
     power.mt6737m
-	
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
@@ -135,7 +135,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/vendor/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/vendor/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/vendor/etc/media_codecs_google_video_le.xml
-	
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
     device/motorola/nicklaus/rootdir/init.project.rc:root/init.project.rc \
@@ -152,7 +152,7 @@ PRODUCT_COPY_FILES += \
 # Screen Density
 PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-	
+
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     device/motorola/nicklaus/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
@@ -163,29 +163,29 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
     lights.mt6737m
-	
+
 # Snap
 PRODUCT_PACKAGES += \
-    Snap	
+    Snap
 
 # Symbols for Mediatek
 PRODUCT_PACKAGES += \
-    mtk_symbols
+    libshims
 
 # USB
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     android.hardware.usb@1.0-service
-	
+
 # Vendor Interface Manifest
 PRODUCT_COPY_FILES += \
     device/motorola/nicklaus/hidl/manifest.xml:system/vendor/manifest.xml
 
-# Vendor Blobs 
+# Vendor Blobs
 VENDOR_BLOBS ?= vendor/motorola/nicklaus/nicklaus-vendor.mk
 $(call inherit-product-if-exists, $(VENDOR_BLOBS))
-	
+
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
@@ -206,7 +206,7 @@ PRODUCT_PACKAGES += \
 # GPS force mode
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.force.gps.mode=gnss
-	
+
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
@@ -217,7 +217,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.debuggable=1 \
 	ro.config.low_ram=false \
 	persist.sys.usb.config=mtp
-	
+
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.io.scheduler=cfq

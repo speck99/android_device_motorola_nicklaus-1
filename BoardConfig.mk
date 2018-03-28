@@ -120,7 +120,7 @@ TARGET_KMODULES := true
 BOARD_USE_SOFT_GATEKEEPER := true
 
 # Symbols for Mediatek
-TARGET_LDPRELOAD += mtk_symbols.so
+TARGET_LDPRELOAD += libshims.so
 
 # Wireless
 BOARD_WLAN_DEVICE := MediaTek
