@@ -23,6 +23,9 @@ index 621853cb..84ca6e3c 100644
 +LOCAL_CFLAGS= -DSUPPRESS_MTK_AUDIO_BLOB_ERR_MSG
 +endif
 +
+ include $(BUILD_SHARED_LIBRARY)
+ 
+ #
 diff --git a/audio/2.0/default/StreamOut.cpp b/audio/2.0/default/StreamOut.cpp
 index 290d0b10..14214121 100644
 --- a/audio/2.0/default/StreamOut.cpp
