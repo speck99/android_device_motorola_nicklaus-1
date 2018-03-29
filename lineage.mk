@@ -3,7 +3,7 @@
 # Release name
 PRODUCT_RELEASE_NAME := nicklaus
 
-# Inherit some common CM stuff.
+# Inherit some common lineageos stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 $(call inherit-product,  device/motorola/nicklaus/full_nicklaus.mk)

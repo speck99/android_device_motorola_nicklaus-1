@@ -32,12 +32,13 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 # Camera
 USE_CAMERA_STUB := true
 
+# Charger
+WITH_LINEAGE_CHARGER := false
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+
 # Common Properties
 TARGET_SYSTEM_PROP := device/motorola/nicklaus/system.prop
-
-# CWM
-TARGET_RECOVERY_FSTAB := device/motorola/nicklaus/rootdir/recovery.fstab
-BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -101,6 +102,10 @@ BOARD_USES_MTK_HARDWARE := true
 BOARD_DISABLE_HW_ID_MATCH_CHECK := true
 SUPPRESS_MTK_AUDIO_BLOB_ERR_MSG := true
 
+# Recovery
+TARGET_RECOVERY_FSTAB := device/motorola/nicklaus/rootdir/recovery.fstab
+BOARD_HAS_NO_SELECT_BUTTON := true
+
 # SELinux Policy
 BOARD_SEPOLICY_DIRS := device/motorola/nicklaus/sepolicy
 
@@ -109,7 +114,7 @@ TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Storage Allocations
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+# BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2432696320
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4698144768
 BOARD_CACHEIMAGE_PARTITION_SIZE := 419430400
@@ -136,27 +141,6 @@ WIFI_DRIVER_FW_PATH_P2P := P2P
 WIFI_DRIVER_STATE_CTRL_PARAM := /dev/wmtWifi
 WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
-
-# TWRP stuff
-TW_THEME := portrait_hdpi
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_NO_REBOOT_BOOTLOADER := true
-TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
-TW_MAX_BRIGHTNESS := 255
-TW_EXCLUDE_SUPERSU := true
-TW_INCLUDE_FB2PNG := true
-TW_NO_CPU_TEMP := true
-TW_REBOOT_BOOTLOADER := true
-TW_REBOOT_RECOVERY := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_EXCLUDE_SUPERSU := true
-TW_USE_TOOLBOX := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
-# Charger
-WITH_LINEAGE_CHARGER := false
-BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
-BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Vendor Interface Manifest
 DEVICE_MANIFEST_FILE := device/motorola/nicklaus/hidl/manifest.xml
